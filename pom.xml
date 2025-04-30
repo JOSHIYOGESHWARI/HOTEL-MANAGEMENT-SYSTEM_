@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- The model version defines the version of the POM format itself -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Parent configuration for Spring Boot -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.4</version>
+        <relativePath/> <!-- Optional: Lookup parent from repository -->
+    </parent>
+
+    <!-- Basic project information -->
+    <groupId>com.hotel</groupId>
+    <artifactId>RoomMicroservice</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>RoomMicroservice</name>
+    <description>Room Microservice for Hotel Management Project.</description>
+    <url>http://www.example.com</url> <!-- Optional URL, update as necessary -->
+
+    <!-- Licenses and developer information (Optional, can be omitted) -->
+    <licenses>
+        <license>
+            <name>Apache 2.0 License</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <id>developer1</id>
+            <name>John Doe</name>
+            <email>johndoe@example.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/yourrepo</connection>
+        <developerConnection>scm:git:https://github.com/yourrepo</developerConnection>
+        <url>https://github.com/yourrepo</url>
+    </scm>
+
+    <!-- Project Properties -->
+    <properties>
+        <!-- Set Java version for your project -->
+        <java.version>17</java.version>
+
+        <!-- Spring Cloud Version -->
+        <spring-cloud.version>2024.0.0</spring-cloud.version>
+    </properties>
+
+    <!-- Project Dependencies -->
+    <dependencies>
+
+        <!-- Spring Boot Starter for JPA (Java Persistence API) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Jakarta Validation API for bean validation -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+
+        <!-- Hibernate Validator for implementing Jakarta Bean Validation -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Starter Web (REST API) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <!-- Spring Boot Starter AOP (Aspect-Oriented Programming) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+ 
+        <!-- Lombok (compile-time code generation for getters/setters, constructors, etc.) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope> <!-- Provided scope for compile-time only -->
+        </dependency>
+
+        <!-- MySQL Connector (Runtime dependency for connecting to MySQL database) -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Spring Cloud Starter OpenFeign (for making HTTP requests to other services) -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <!-- Spring Cloud Netflix Eureka Client (for service discovery) -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <!-- SpringDoc OpenAPI for generating API documentation (Swagger UI integration) -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+        <dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		 <!-- Spring Boot Starter Logging (Logback) - usually included by default -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+ 
+         <!-- Optional: SLF4J API dependency (included in Spring Boot Starter Logging) -->
+        <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>slf4j-api</artifactId>
+       </dependency>
+
+        <!-- Jackson Databind for JSON processing -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Starter Test for unit testing and integration testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- Dependency Management for Spring Cloud -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Import Spring Cloud dependencies BOM -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- Build Configuration -->
+    <build>
+        <plugins>
+            <!-- Spring Boot Maven Plugin for packaging and running the Spring Boot app -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
