@@ -1,0 +1,99 @@
+create DATABASE Hoteldb;
+
+create DATABASE New_Hoteldb;
+use New_Hoteldb;
+
+SHOW TABLES;
+SHOW DATABASES;
+
+
+CREATE TABLE inventory (item_id INT AUTO_INCREMENT PRIMARY KEY,
+item_name VARCHAR(255) NOT NULL UNIQUE, 
+itemQuantity int ,   
+timestamp date);
+
+CREATE TABLE notification (notificationId INT AUTO_INCREMENT PRIMARY KEY,
+type VARCHAR(255) NOT NULL, 
+item_id int,
+message VARCHAR(255) ,   
+status VARCHAR(255) ,
+FOREIGN KEY (item_id) REFERENCES inventory(item_id));
+
+select * from inventory;
+select * from notifications;
+
+
+INSERT INTO users (email, password_hash, role)
+VALUES 
+('admin@hotel.com', 'adminpassword', 'admin');
+
+CREATE TABLE room_types (
+    room_type_id INT AUTO_INCREMENT PRIMARY KEY,
+    type_name VARCHAR(50) NOT NULL 
+);
+
+CREATE TABLE rooms (
+    room_id INT AUTO_INCREMENT PRIMARY KEY,
+    room_type_id INT,
+    price DECIMAL(10,2) NOT NULL,
+    status BOOLEAN DEFAULT TRUE,  -- TRUE for available, FALSE for not available
+    FOREIGN KEY (room_type_id) REFERENCES room_types(room_type_id)
+);
+
+CREATE TABLE room_availability (
+    availability_id INT AUTO_INCREMENT PRIMARY KEY,
+    room_id INT,
+    date DATE NOT NULL,
+    is_available BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (room_id) REFERENCES rooms(room_id)
+);
+
+CREATE TABLE customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    address TEXT,
+    dob DATE
+);
+
+CREATE TABLE room_bookings (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    room_id INT,
+    customer_id INT,
+    check_in_date DATE NOT NULL,
+    check_out_date DATE NOT NULL,
+    total_price DECIMAL(10,2) NOT NULL,
+    status ENUM('confirmed') DEFAULT 'confirmed',
+    FOREIGN KEY (room_id) REFERENCES rooms(room_id),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)  -- Assuming a customers table exists
+);
+ 
+ 
+ CREATE TABLE customer_payment_info (
+    payment_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    payment_method VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+
+CREATE TABLE customer_bookings (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    room_id INT,
+    check_in_date DATE NOT NULL,
+    check_out_date DATE NOT NULL,
+    total_price DECIMAL(10,2) NOT NULL,
+    status ENUM('confirmed') DEFAULT 'confirmed',
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+    FOREIGN KEY (room_id) REFERENCES rooms(room_id)
+);
+
+
+
+
+
+
+
